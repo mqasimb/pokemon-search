@@ -103,16 +103,13 @@ function fetchAllPokemon() {
                 return response.json();
             })
             .then(function(data) {
-                var pokemonArray = data.results;
-                pokemonArray.forEach(function(pokemon){
                     return dispatch(
-                        fetchSinglePokemon(pokemon.url)
+                        fetchAllPokemonSuccess(data)
                 )
-                })
             })
             .catch(function(error) {
                 return dispatch(
-                    fetchSearchError(error)
+                    fetchAllPokemonError(error)
                 )
             })
         }

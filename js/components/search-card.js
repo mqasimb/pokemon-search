@@ -1,38 +1,26 @@
 const React = require('react');
 const { connect } = require('react-redux');
 const actions = require('../actions/index');
+const CardList = require('./card-list');
 
-class Search extends React.Component {
-    componentWillMount() {
-        this.props.dispatch(actions.fetchAllPokemon());
-    }
+class SearchCard extends React.Component {
     inputUpdated(event) {
         this.props.dispatch(actions.inputChanged(event.target.value));
+        this.props.dispatch(actions.fetchSearchName(this.props.inputValue));
     }
     formSubmitted(event) {
         event.preventDefault();
         this.props.dispatch(actions.fetchSearchName(this.props.inputValue));
         this.props.dispatch(actions.inputSubmit());
     }
-    viewAllClick() {
-        this.props.dispatch(actions.fetchAllPokemon());
-    }
-    
     render() {
-        var newCards = this.props.currentCards.map(function(card, index) {
-            return <li key={index}><img src={card.imageUrl} /></li>
-        })
-        var newPokemon = this.props.currentPokemon.map(function(pokemon, index) {
-           return <li key={index}><img src={'../../assets/sprites/pokemon/'+(index+1)+'.png'} />{pokemon.name.toUpperCase()}</li>
-        });
         return(
             <div className='search-card'>
             <form onSubmit={this.formSubmitted.bind(this)}>
             <input type='text' value={this.props.inputValue} onChange={this.inputUpdated.bind(this)} />
+            <button>Search Cards</button>
             </form>
-            <button onClick={this.viewAllClick.bind(this)}>View All</button>
-            {newPokemon}
-            {newCards}
+            <CardList />
             </div>
             )
     }
@@ -47,6 +35,6 @@ function mapStateToProps(state, props) {
     })
 }
 
-var Container = connect(mapStateToProps)(Search);
+var Container = connect(mapStateToProps)(SearchCard);
 
 module.exports = Container;

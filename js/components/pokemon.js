@@ -27,6 +27,7 @@ class Pokemon extends React.Component {
         });
         return(
             <div className='pokemon'>
+            
             </div>
             )
     }
