@@ -1,10 +1,17 @@
 var fetch = require('isomorphic-fetch');
 
 const INPUT_CHANGED = 'INPUT_CHANGED';
-function inputChanged(input) {
+function inputChanged(inputValue) {
     return {
         type: INPUT_CHANGED,
-        input: input
+        inputValue: inputValue
+    }
+}
+
+const INPUT_SUBMIT = 'INPUT_SUBMIT';
+function inputSubmit() {
+    return {
+        type: INPUT_SUBMIT
     }
 }
 
@@ -24,7 +31,6 @@ function toggleFavorite() {
 
 var FETCH_SEARCH_SUCCESS = 'FETCH_SEARCH_SUCCESS';
 var fetchSearchSuccess = function(data) {
-    console.log(data.cards);
     return {
         type: FETCH_SEARCH_SUCCESS,
         data: data
@@ -51,7 +57,6 @@ function fetchSearchName(pokemonName) {
             return response;
             })
             .then(function(response) {
-                console.log(response);
                 return response.json();
             })
             .then(function(data) {
@@ -67,12 +72,115 @@ function fetchSearchName(pokemonName) {
         }
 }
 
+var FETCH_ALL_POKEMON_SUCCESS = 'FETCH_ALL_POKEMON_SUCCESS';
+var fetchAllPokemonSuccess = function(data) {
+    return {
+        type: FETCH_ALL_POKEMON_SUCCESS,
+        data: data
+    };
+};
+
+var FETCH_ALL_POKEMON_ERROR= 'FETCH_ALL_POKEMON_ERROR';
+var fetchAllPokemonError = function(error) {
+    return {
+        type: FETCH_ALL_POKEMON_ERROR,
+        error: error
+    };
+};
+
+function fetchAllPokemon() {
+    return function(dispatch) {
+        var url = 'https://pokeapi.co/api/v2/pokemon/?limit=10';
+        return fetch(url).then(function(response) {
+            if(response.status < 200 || response.status >= 300) {
+                var error = new Error(response.statusText);
+                error.response = response;
+                throw error;
+            }
+            return response;
+            })
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
+                var pokemonArray = data.results;
+                pokemonArray.forEach(function(pokemon){
+                    return dispatch(
+                        fetchSinglePokemon(pokemon.url)
+                )
+                })
+            })
+            .catch(function(error) {
+                return dispatch(
+                    fetchSearchError(error)
+                )
+            })
+        }
+}
+
+var FETCH_SINGLE_POKEMON_SUCCESS = 'FETCH_SINGLE_POKEMON_SUCCESS';
+var fetchSinglePokemonSuccess = function(data) {
+    return {
+        type: FETCH_SINGLE_POKEMON_SUCCESS,
+        data: data
+    };
+};
+
+var FETCH_SINGLE_POKEMON_ERROR= 'FETCH_SINGLE_POKEMON_ERROR';
+var fetchSinglePokemonError = function(error) {
+    return {
+        type: FETCH_SINGLE_POKEMON_ERROR,
+        error: error
+    };
+};
+
+function fetchSinglePokemon(url) {
+    return function(dispatch) {
+        return fetch(url).then(function(response) {
+            if(response.status < 200 || response.status >= 300) {
+                var error = new Error(response.statusText);
+                error.response = response;
+                throw error;
+            }
+            return response;
+            })
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
+                console.log(data.name)
+                return dispatch(
+                    fetchSinglePokemonSuccess(data)
+                )
+            })
+            .catch(function(error) {
+                return dispatch(
+                    fetchSinglePokemonError(error)
+                )
+            })
+        }
+}
+
+exports.fetchSinglePokemon = fetchSinglePokemon;
+exports.fetchSinglePokemonSuccess = fetchSinglePokemonSuccess;
+exports.FETCH_SINGLE_POKEMON_SUCCESS = FETCH_SINGLE_POKEMON_SUCCESS;
+exports.fetchSinglePokemonError = fetchSinglePokemonError;
+exports.FETCH_SINGLE_POKEMON_ERROR = FETCH_SINGLE_POKEMON_ERROR;
+
+exports.fetchAllPokemon = fetchAllPokemon;
+exports.fetchAllPokemonSuccess = fetchAllPokemonSuccess;
+exports.FETCH_ALL_POKEMON_SUCCESS = FETCH_ALL_POKEMON_SUCCESS;
+exports.fetchAllPokemonError = fetchAllPokemonError;
+exports.FETCH_ALL_POKEMON_ERROR = FETCH_ALL_POKEMON_ERROR;
+
 exports.fetchSearchName = fetchSearchName;
 exports.fetchSearchSuccess = fetchSearchSuccess;
 exports.FETCH_SEARCH_SUCCESS = FETCH_SEARCH_SUCCESS;
 exports.fetchSearchError = fetchSearchError;
 exports.FETCH_SEARCH_ERROR = FETCH_SEARCH_ERROR;
 
+exports.INPUT_SUBMIT = INPUT_SUBMIT;
+exports.inputSubmit = inputSubmit;
 exports.INPUT_CHANGED = INPUT_CHANGED;
 exports.inputChanged = inputChanged;
 exports.CALL_LOADING = CALL_LOADING;

@@ -2,9 +2,9 @@ const React = require('react');
 const { connect } = require('react-redux');
 const actions = require('../actions/index');
 
-class Search extends React.Component {
-    componentWillMount() {
-        this.props.dispatch(actions.fetchAllPokemon());
+class Pokemon extends React.Component {
+    componentDidMount() {
+
     }
     inputUpdated(event) {
         this.props.dispatch(actions.inputChanged(event.target.value));
@@ -15,7 +15,7 @@ class Search extends React.Component {
         this.props.dispatch(actions.inputSubmit());
     }
     viewAllClick() {
-        
+        this.props.dispatch(actions.fetchAllPokemon());
     }
     
     render() {
@@ -26,13 +26,7 @@ class Search extends React.Component {
            return <li key={index}><img src={pokemon.sprites.front_default} /></li>
         });
         return(
-            <div className='search-card'>
-            <form onSubmit={this.formSubmitted.bind(this)}>
-            <input type='text' value={this.props.inputValue} onChange={this.inputUpdated.bind(this)} />
-            </form>
-            <button onClick={this.viewAllClick.bind(this)}>View All</button>
-            {newPokemon}
-            {newCards}
+            <div className='pokemon'>
             </div>
             )
     }
@@ -47,6 +41,6 @@ function mapStateToProps(state, props) {
     })
 }
 
-var Container = connect(mapStateToProps)(Search);
+var Container = connect(mapStateToProps)(Pokemon);
 
 module.exports = Container;
