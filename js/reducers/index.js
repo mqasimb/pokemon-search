@@ -5,6 +5,7 @@ var initialState = {
         inputValue: '',
         currentCards: [],
         currentPokemon: [],
+        currentIndex: 0,
         nextPage: null,
         previousPage: null
     };
@@ -17,7 +18,22 @@ var searchReducer = function(state, action) {
     if(action.type === actions.FETCH_SINGLE_POKEMON_SUCCESS) {
         var pokemonData = newState.currentPokemon.slice();
         pokemonData.push(action.data);
-        newState.currentPokemon = pokemonData;
+        newState.currentPokemon = pokemonData.forEach(function(item) {
+            return {'img':item.sprites.front_default,'name':item.name, 'id':item.id}
+        });
+        return newState;
+    }
+    
+    
+    if(action.type === actions.FETCH_POKEMON_SUCCESS) {
+        var pokemonData = action.data;
+        newState.currentPokemon = pokemonData.slice();
+        console.log(newState.currentPokemon);
+        return newState;
+    }
+    
+    if(action.type === actions.CHANGE_OFFSET) {
+        newState.currentIndex = action.currentOffset;
         return newState;
     }
     

@@ -9,5 +9,5 @@ const SearchCard = require('./components/search-card');
 const store = require('./store');
 
 document.addEventListener('DOMContentLoaded', function() {
-    ReactDOM.render(<Provider store={store}><SearchCard /></Provider>, document.getElementById('app'));
+    ReactDOM.render(<Provider store={store}><App><Search /><SearchCard /></App></Provider>, document.getElementById('app'));
 });
