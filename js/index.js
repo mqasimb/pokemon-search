@@ -12,23 +12,21 @@ const App = require('./components/app')
 const Search = require('./components/search');
 const SearchCard = require('./components/search-card');
 const Choose = require('./components/choose');
+const DisplayCard = require('./components/display-cards');
 const store = require('./store');
 
 var routes = (
     <Provider store={store}>
     <Router history={browserHistory}>
         <Route path="/" component={App}>
-            <IndexRoute component={Search} />
+            <IndexRoute component={Choose} />
             <Route path='/pokemon' component={Search}/>
-            <Route path='/card' component={SearchCard}/>
+            <Route path='/cards' component={SearchCard}/>
+            <Route path='/cards/:pokemonName' component={DisplayCard}/>
         </Route>
     </Router>
     </Provider>
 )
-
-{/*document.addEventListener('DOMContentLoaded', function() {
-    ReactDOM.render(<Provider store={store}><App><Search /><SearchCard /></App></Provider>, document.getElementById('app'));
-});*/}
 
 document.addEventListener('DOMContentLoaded', function() {
     ReactDOM.render(routes, document.getElementById('app'));
