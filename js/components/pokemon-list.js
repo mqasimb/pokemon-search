@@ -7,7 +7,7 @@ class PokemonList extends React.Component {
     render() {
         var imgNum = this.props.currentIndex + 1;
         var newPokemon = this.props.currentPokemon.map(function(pokemon, index) {
-            return <Pokemon key={index} src={'../../assets/sprites/pokemon/'+pokemon.img} name={pokemon.name.toUpperCase()} />
+            return <Pokemon key={index} id={pokemon.id} src={'../../assets/sprites/pokemon/'+pokemon.img} name={pokemon.name.toUpperCase()} />
         });
         return(
             <div className='pokemon-list'>
