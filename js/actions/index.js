@@ -24,9 +24,10 @@ function callLoading() {
 }
 
 const TOGGLE_FAVORITE = 'TOGGLE_FAVORITE';
-function toggleFavorite() {
+function toggleFavorite(pokemonName) {
     return {
-        type: TOGGLE_FAVORITE
+        type: TOGGLE_FAVORITE,
+        pokemonName: pokemonName
     }
 }
 
@@ -73,52 +74,6 @@ function fetchSearchName(pokemonName) {
         }
 }
 
-var FETCH_ALL_POKEMON_SUCCESS = 'FETCH_ALL_POKEMON_SUCCESS';
-var fetchAllPokemonSuccess = function(data) {
-    return {
-        type: FETCH_ALL_POKEMON_SUCCESS,
-        data: data
-    };
-};
-
-var FETCH_ALL_POKEMON_ERROR= 'FETCH_ALL_POKEMON_ERROR';
-var fetchAllPokemonError = function(error) {
-    return {
-        type: FETCH_ALL_POKEMON_ERROR,
-        error: error
-    };
-};
-
-function fetchAllPokemon(offset) {
-    return function(dispatch) {
-        var url = 'https://pokeapi.co/api/v2/pokemon/?limit=75&offset='+offset;
-        return fetch(url).then(function(response) {
-            if(response.status < 200 || response.status >= 300) {
-                var error = new Error(response.statusText);
-                error.response = response;
-                throw error;
-            }
-            return response;
-            })
-            .then(function(response) {
-                return response.json();
-            })
-            .then(function(data) {
-                var pokemonlist = data.results;
-                    pokemonlist.forEach(function(pokemon) {
-                        return dispatch(
-                            fetchSinglePokemon(pokemon.url)
-                    )
-                })
-            })
-            .catch(function(error) {
-                return dispatch(
-                    fetchAllPokemonError(error)
-                )
-            })
-        }
-}
-
 var FETCH_SINGLE_POKEMON_SUCCESS = 'FETCH_SINGLE_POKEMON_SUCCESS';
 var fetchSinglePokemonSuccess = function(data) {
     return {
@@ -135,9 +90,9 @@ var fetchSinglePokemonError = function(error) {
     };
 };
 
-function fetchSinglePokemon(url) {
+function fetchSinglePokemon(pokemonName) {
     return function(dispatch) {
-        return fetch(url).then(function(response) {
+        return fetch('https://pokeapi.co/api/v2/pokemon/'+pokemonName+'/').then(function(response) {
             if(response.status < 200 || response.status >= 300) {
                 var error = new Error(response.statusText);
                 error.response = response;
@@ -149,7 +104,6 @@ function fetchSinglePokemon(url) {
                 return response.json();
             })
             .then(function(data) {
-                console.log(data.name)
                 return dispatch(
                     fetchSinglePokemonSuccess(data)
                 )
@@ -192,6 +146,26 @@ function fetchPokemon(offset) {
     }
 }
 
+var CLOSE_MODAL= 'CLOSE_MODAL';
+var closeModal = function() {
+    return {
+        type: CLOSE_MODAL
+    };
+};
+
+var SHOW_MODAL= 'SHOW_MODAL';
+var showModal = function(clickedPokemon) {
+    return {
+        type: SHOW_MODAL,
+        clickedPokemon: clickedPokemon
+    };
+};
+
+exports.CLOSE_MODAL = CLOSE_MODAL;
+exports.closeModal = closeModal;
+exports.SHOW_MODAL = SHOW_MODAL;
+exports.showModal = showModal;
+
 exports.CHANGE_OFFSET = CHANGE_OFFSET;
 exports.changeOffset = changeOffset;
 
@@ -206,12 +180,6 @@ exports.fetchSinglePokemonSuccess = fetchSinglePokemonSuccess;
 exports.FETCH_SINGLE_POKEMON_SUCCESS = FETCH_SINGLE_POKEMON_SUCCESS;
 exports.fetchSinglePokemonError = fetchSinglePokemonError;
 exports.FETCH_SINGLE_POKEMON_ERROR = FETCH_SINGLE_POKEMON_ERROR;
-
-exports.fetchAllPokemon = fetchAllPokemon;
-exports.fetchAllPokemonSuccess = fetchAllPokemonSuccess;
-exports.FETCH_ALL_POKEMON_SUCCESS = FETCH_ALL_POKEMON_SUCCESS;
-exports.fetchAllPokemonError = fetchAllPokemonError;
-exports.FETCH_ALL_POKEMON_ERROR = FETCH_ALL_POKEMON_ERROR;
 
 exports.fetchSearchName = fetchSearchName;
 exports.fetchSearchSuccess = fetchSearchSuccess;

@@ -22,7 +22,7 @@ var routes = (
             <IndexRoute component={Choose} />
             <Route path='/pokemon' component={Search}/>
             <Route path='/cards' component={SearchCard}/>
-            <Route path='/cards/:pokemonName' component={DisplayCard}/>
+            <Route path='/pokemon/:pokemonName' component={DisplayCard}/>
         </Route>
     </Router>
     </Provider>
