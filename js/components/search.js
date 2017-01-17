@@ -2,7 +2,11 @@ const React = require('react');
 const { connect } = require('react-redux');
 const actions = require('../actions/index');
 const PokemonList = require('./pokemon-list')
+const browserHistory = require('react-router').browserHistory;
+var router = require('react-router');
+var Link = router.Link;
 var Button = require('react-bootstrap/lib/Button');
+
 
 class Search extends React.Component {
     componentDidMount() {
@@ -33,9 +37,8 @@ class Search extends React.Component {
         var nextButton = ((this.props.currentPokemon.length > 35)) ? (<Button bsStyle="success" onClick={this.nextButtonClick.bind(this)}>Next</Button>) : (<Button bsStyle="success" onClick={this.nextButtonClick.bind(this)} disabled>Next</Button>);
         return(
             <div className='search-card'>
-            <form onSubmit={this.formSubmitted.bind(this)}>
-            <input type='text' value={this.props.inputValue} onChange={this.inputUpdated.bind(this)} />
-            </form>
+            <Button bsStyle="success" onClick={browserHistory.goBack}>Go Back</Button>
+            <Link to='/favorite-pokemon'><Button bsStyle='success' bsSize="large">Favorite Pokemon</Button></Link>
             {/*<Button bsStyle="info" onClick={this.viewAllClick.bind(this)}>View All</Button>*/}
             {previousButton}{nextButton}
             <PokemonList />

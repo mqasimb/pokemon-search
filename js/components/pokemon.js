@@ -17,17 +17,20 @@ class Pokemon extends React.Component {
     }
     favoriteClick(event) {
         event.stopPropagation();
-        this.props.dispatch(actions.toggleFavorite(this.props.name));
+        this.props.dispatch(actions.toggleFavorite(this.props.name, this.props.id));
     }
     modalClose() {
         this.props.dispatch(actions.closeModal());
     }
     render() {
-        var favoriteStyle = (this.props.favoritePokemon[this.props.name.toUpperCase()]) ? ({
+        var favoriteStyle;
+        if(this.props.favoritePokemon[this.props.name.toUpperCase()]) {
+            favoriteStyle = (this.props.favoritePokemon[this.props.name.toUpperCase()].favorite) ? ({
             borderStyle: 'solid',
             borderColor: 'yellow',
             borderWidth: 10
         }) : ({});
+        }
         var favoriteStar = <Button bsStyle='link' onClick={this.favoriteClick.bind(this)}><Glyphicon glyph='star'/></Button>;
         return(
             <div style={favoriteStyle} className='pokemon'>

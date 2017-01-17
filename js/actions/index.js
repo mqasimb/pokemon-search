@@ -24,10 +24,11 @@ function callLoading() {
 }
 
 const TOGGLE_FAVORITE = 'TOGGLE_FAVORITE';
-function toggleFavorite(pokemonName) {
+function toggleFavorite(pokemonName, id) {
     return {
         type: TOGGLE_FAVORITE,
-        pokemonName: pokemonName
+        pokemonName: pokemonName,
+        id: id
     }
 }
 

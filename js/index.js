@@ -10,6 +10,7 @@ const browserHistory = router.browserHistory;
 
 const App = require('./components/app')
 const Search = require('./components/search');
+const Favorite = require('./components/favorite');
 const SearchCard = require('./components/search-card');
 const Choose = require('./components/choose');
 const DisplayCard = require('./components/display-cards');
@@ -21,6 +22,7 @@ var routes = (
         <Route path="/" component={App}>
             <IndexRoute component={Choose} />
             <Route path='/pokemon' component={Search}/>
+            <Route path='/favorite-pokemon' component={Favorite}/>
             <Route path='/cards' component={SearchCard}/>
             <Route path='/pokemon/:pokemonName' component={DisplayCard}/>
         </Route>

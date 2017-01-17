@@ -74,7 +74,11 @@ var searchReducer = function(state, action) {
     
     if(action.type === actions.TOGGLE_FAVORITE) {
         var favoritePokemon = newState.favoritePokemon;
-        favoritePokemon[action.pokemonName] = (favoritePokemon[action.pokemonName]) ? (false) : (true);
+        if(typeof(favoritePokemon[action.pokemonName]) != 'object') {
+            favoritePokemon[action.pokemonName] = {};
+            favoritePokemon[action.pokemonName].id = action.id;
+        }
+        favoritePokemon[action.pokemonName].favorite = (favoritePokemon[action.pokemonName].favorite) ? (false) : (true);
         newState.favoritePokemon = Object.assign({}, favoritePokemon);
         return newState;
     }

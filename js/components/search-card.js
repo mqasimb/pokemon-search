@@ -2,6 +2,8 @@ const React = require('react');
 const { connect } = require('react-redux');
 const actions = require('../actions/index');
 const CardList = require('./card-list');
+const browserHistory = require('react-router').browserHistory;
+var Button = require('react-bootstrap/lib/Button');
 
 class SearchCard extends React.Component {
     inputUpdated(event) {
@@ -16,9 +18,10 @@ class SearchCard extends React.Component {
     render() {
         return(
             <div className='search-card'>
+            <Button bsStyle="success" onClick={browserHistory.goBack}>Go Back</Button>
             <form onSubmit={this.formSubmitted.bind(this)}>
             <input type='text' value={this.props.inputValue} onChange={this.inputUpdated.bind(this)} />
-            <button>Search Cards</button>
+            <Button bsStyle="success">Search Cards</Button>
             </form>
             <CardList />
             </div>
