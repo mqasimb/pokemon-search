@@ -6,6 +6,7 @@ const Link = router.Link;
 const Button = require('react-bootstrap/lib/Button');
 const Thumbnail = require('react-bootstrap/lib/Thumbnail');
 const Glyphicon = require('react-bootstrap/lib/Glyphicon');
+const Badge = require('react-bootstrap/lib/Badge');
 const Modal = require('react-bootstrap/lib/Modal');
 
 class Pokemon extends React.Component {
@@ -31,11 +32,10 @@ class Pokemon extends React.Component {
             borderWidth: 10
         }) : ({});
         }
-        var favoriteStar = <Button bsStyle='link' onClick={this.favoriteClick.bind(this)}><Glyphicon glyph='star'/></Button>;
+        var favoriteStar = <Button bsStyle='warning' onClick={this.favoriteClick.bind(this)}><Glyphicon glyph='heart'/>Add To Favorite</Button>;
         return(
             <div style={favoriteStyle} className='pokemon'>
-            <Link to={'/pokemon/'+this.props.name.toLowerCase()}><Thumbnail className='pokeThumbnail' src={this.props.src} >#{this.props.id} {this.props.name}</Thumbnail></Link>
-            {favoriteStar}
+            <Thumbnail className='pokeThumbnail' src={this.props.src} ><Link to={'/pokemon/'+this.props.name.toLowerCase()}><Badge>#{this.props.id}</Badge> {this.props.name}</Link> {favoriteStar} </Thumbnail>
         </div>
             )
     }

@@ -21,7 +21,8 @@ class FavoritePokemon extends React.Component {
         console.log(favoriteList);
         return(
         <div className='favorite-pokemon'>
-        {favoriteList}
+        <Button bsStyle="success" onClick={browserHistory.goBack}>Go Back</Button>
+        {(favoriteList.length > 0) ? (favoriteList) : (<p>Sorry, you haven't chosen any favorite Pokemon yet</p>)}
         </div>
             )
     }

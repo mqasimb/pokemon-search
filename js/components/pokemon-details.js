@@ -5,7 +5,7 @@ const Pokemon = require('./pokemon');
 
 class PokemonDetails extends React.Component {
     render() {
-        var pokeImg = (this.props.linkedPokemon.id) ? (<div><img src={'../../assets/sprites/pokemon/'+this.props.linkedPokemon.id+'.png'}/><br/> '#'{this.props.linkedPokemon.id} {this.props.linkedPokemon.name.toUpperCase()}</div>) : (null);
+        var pokeImg = (this.props.linkedPokemon.id) ? (<div><img src={'../../assets/sprites/pokemon/'+this.props.linkedPokemon.id+'.png'}/><br/> #{this.props.linkedPokemon.id} {this.props.linkedPokemon.name.toUpperCase()}</div>) : (null);
         return(
             <div className='pokemon-list'>
             {pokeImg}
