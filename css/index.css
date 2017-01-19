@@ -1,0 +1,11 @@
+.pokemon {
+    display: inline-block;
+    max-width: 25%
+}
+.pokemon-list {
+    max-width: 1000px;
+}
+
+.pokemon-card {
+    display: inline-block;
+}

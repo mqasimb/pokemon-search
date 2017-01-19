@@ -2,6 +2,12 @@ const React = require('react');
 const { connect } = require('react-redux');
 const actions = require('../actions/index');
 const Pokemon = require('./pokemon');
+const router = require('react-router');
+const Link = router.Link;
+const Button = require('react-bootstrap/lib/Button');
+const Thumbnail = require('react-bootstrap/lib/Thumbnail');
+const Glyphicon = require('react-bootstrap/lib/Glyphicon');
+const Modal = require('react-bootstrap/lib/Modal');
 
 class PokemonList extends React.Component {
     render() {
