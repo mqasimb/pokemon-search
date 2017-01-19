@@ -9,10 +9,8 @@ class CardList extends React.Component {
             return <Card key={index} src={card.imageUrl} />
         });
         return(
-            <div className='card-list-page'>
             <div className='card-list'>
             {newCards}
-            </div>
             </div>
             )
     }

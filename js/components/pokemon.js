@@ -25,17 +25,14 @@ class Pokemon extends React.Component {
     }
     render() {
         var favoriteStyle;
+        var favoriteStar = <Button className='favorite-button' bsStyle='success' onClick={this.favoriteClick.bind(this)}><Glyphicon glyph='star'/>Add To Favorite</Button>;
         if(this.props.favoritePokemon[this.props.name.toUpperCase()]) {
-            favoriteStyle = (this.props.favoritePokemon[this.props.name.toUpperCase()].favorite) ? ({
-            borderStyle: 'solid',
-            borderColor: 'yellow',
-            borderWidth: 10
-        }) : ({});
+            favoriteStar = (this.props.favoritePokemon[this.props.name.toUpperCase()].favorite) ? (<Button className='favorite-button' bsStyle='danger' onClick={this.favoriteClick.bind(this)}><Glyphicon glyph='heart'/>Favorite</Button>) : (
+                <Button className='favorite-button' bsStyle='success' onClick={this.favoriteClick.bind(this)}><Glyphicon glyph='star'/>Add To Favorite</Button>);
         }
-        var favoriteStar = <Button bsStyle='warning' onClick={this.favoriteClick.bind(this)}><Glyphicon glyph='heart'/>Add To Favorite</Button>;
         return(
-            <div style={favoriteStyle} className='pokemon'>
-            <Thumbnail className='pokeThumbnail' src={this.props.src} ><Link to={'/pokemon/'+this.props.name.toLowerCase()}><Badge>#{this.props.id}</Badge> {this.props.name}</Link> {favoriteStar} </Thumbnail>
+            <div className='pokemon'>
+            <Thumbnail className='pokeThumbnail' src={this.props.src} ><Link to={'/pokemon/'+this.props.name.toLowerCase()}><Badge className='pokeNumber'>#{this.props.id}</Badge> {this.props.name}</Link> {favoriteStar} </Thumbnail>
         </div>
             )
     }
