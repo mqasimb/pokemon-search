@@ -3,6 +3,10 @@ const { connect } = require('react-redux');
 const actions = require('../actions/index');
 const CardList = require('./card-list');
 const PokemonDetails = require('./pokemon-details');
+const Button = require('react-bootstrap/lib/Button');
+var router = require('react-router');
+const browserHistory = router.browserHistory;
+var Link = router.Link;
 
 class DisplayCards extends React.Component {
     componentDidMount() {
@@ -11,9 +15,13 @@ class DisplayCards extends React.Component {
     }
     render() {
          return(
+            <div className='display-card-page'>
+            <Button bsStyle="success" onClick={browserHistory.goBack}>Go Back</Button>
             <div className='display-card'>
-            {(this.props.linkedPokemon.id) ? (<PokemonDetails/>) : (null)}
+            {/*{(this.props.linkedPokemon.id) ? (<PokemonDetails/>) : (null)}*/}
+            <h1>{this.props.params.pokemonName.toUpperCase()}</h1>
             <CardList />
+            </div>
             </div>
             )
     }

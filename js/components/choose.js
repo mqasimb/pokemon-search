@@ -9,8 +9,11 @@ class Choose extends React.Component {
     render() {
         return(
             <div className='choose-feature'>
-            <Link to='/pokemon'><Button bsStyle='success' bsSize="large">View All Pokemon</Button></Link>
-            <Link to='/cards'><Button bsStyle='success' bsSize="large">Search Cards</Button></Link>
+                <img src='../../assets/titleimage.png' />
+                <div className='choose-buttons'>
+                    <Link to='/pokemon'><Button bsStyle='success' bsSize="large" className='home-buttons'>Search Pokedex</Button></Link>
+                    <Link to='/cards'><Button bsStyle='success' bsSize="large" className='home-buttons'>Search Cards</Button></Link>
+                </div>
             </div>
             )
     }

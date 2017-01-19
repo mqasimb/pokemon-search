@@ -20,9 +20,6 @@ class Search extends React.Component {
         this.props.dispatch(actions.fetchSearchName(this.props.inputValue));
         this.props.dispatch(actions.inputSubmit());
     }
-    //viewAllClick() {
-    //    this.props.dispatch(actions.fetchPokemon(this.props.currentIndex));
-    //}
     nextButtonClick() {
         this.props.dispatch(actions.fetchPokemon(this.props.currentIndex+36));
         this.props.dispatch(actions.changeOffset(this.props.currentIndex+36));
@@ -37,10 +34,11 @@ class Search extends React.Component {
         var nextButton = ((this.props.currentPokemon.length > 35)) ? (<Button bsStyle="success" onClick={this.nextButtonClick.bind(this)}>Next</Button>) : (<Button bsStyle="success" onClick={this.nextButtonClick.bind(this)} disabled>Next</Button>);
         return(
             <div className='search-card'>
+            <div className='control-buttons'>
             <Button bsStyle="success" onClick={browserHistory.goBack}>Go Back</Button>
-            <Link to='/favorite-pokemon'><Button bsStyle='success' bsSize="large">Favorite Pokemon</Button></Link>
-            {/*<Button bsStyle="info" onClick={this.viewAllClick.bind(this)}>View All</Button>*/}
             {previousButton}{nextButton}
+            <Link to='/favorite-pokemon'><Button bsStyle='success' className='favorite-poke-button'>Favorite Pokemon</Button></Link>
+            </div>
             <PokemonList />
             </div>
             )
