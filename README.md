@@ -1,4 +1,5 @@
 #Pokemon Search Plus
+[Hosted on Heroku](https://pokemonsearchplus.herokuapp.com)
 React Capstone project - Uses React, Redux and Express.
 
 ![Screenshots](https://raw.githubusercontent.com/mqasimb/pokemon-search/master/assets/ui.jpg)
