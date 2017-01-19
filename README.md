@@ -1,23 +1,22 @@
-# Thinkful React Starter
+#Pokemon Search Plus
+React Capstone project - Uses React, Redux and Express.
 
-A template for developing React apps.
+![Screenshots](https://raw.githubusercontent.com/mqasimb/pokemon-search/master/assets/ui.jpg)
 
-## Getting started
+##Introduction
+Pokemon Search Plus allows you to view all Pokemon and view the current available trading cards for them.
+You can also add favorite Pokemon so you can know which ones you want to catch when the new Pokemon game comes out.
 
-### Setting up a project
+##Use Case
+Why is the app useful? There are so many Pokemon now that it is becoming difficult to remember all of them. On top of that, there are also many different card versions for the trading card game. Using Pokemon Search plus can simplify that for you by being the go to data source for Pokemon.
 
-* Move into your projects directory: `cd ~/YOUR_PROJECTS_DIRECTORY`
-* Clone this repository: `git clone https://github.com/oampo/thinkful-react-starter YOUR_PROJECT_NAME`
-* Move into the project directory: `cd YOUR_PROJECT_NAME`
-* Install the dependencies: `npm install`
-* Create a new repo on GitHub: https://github.com/new
-    * Make sure the "Initialize this repository with a README" option is left **un**checked
-* Update the remote to point to your GitHub repository: `git remote set-url origin https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPOSITORY_NAME`
+The app is responsive and will scale with different size devices.
 
-### Working on the project
-
-* Move into the project directory: `cd ~/YOUR_PROJECTS_DIRECTORY/YOUR_PROJECT_NAME`
-* Run the development task: `npm run dev`
-    * Starts a server running at http://localhost:8080
-    * Automatically rebuilds when any of your files change
-
+##Technical
+* The app is built using React. The frontend is built using HTML, CSS and React. Application state is managed through Redux and the backend uses NodeJS with ExpressJS.
+* The app is fully responsive, adapting for mobile, table and desktop viewports.
+* Routing is handled using React-Router.
+* Buttons and various other components used from React-Bootstrap.
+* The API's used are the PokeAPI and PokemonTCGAPI.
+* Fetch used to make API calls.
+* Testing performed using Mocha and Chai.
