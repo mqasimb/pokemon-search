@@ -1,11 +1,9 @@
 const React = require('react');
 const { connect } = require('react-redux');
 const actions = require('../actions/index');
+const PokemonList = require('./pokemon-list')
 
 class Search extends React.Component {
-    componentWillMount() {
-        this.props.dispatch(actions.fetchAllPokemon());
-    }
     inputUpdated(event) {
         this.props.dispatch(actions.inputChanged(event.target.value));
     }
@@ -15,24 +13,28 @@ class Search extends React.Component {
         this.props.dispatch(actions.inputSubmit());
     }
     viewAllClick() {
-        this.props.dispatch(actions.fetchAllPokemon());
+        this.props.dispatch(actions.fetchPokemon(this.props.currentIndex));
+    }
+    nextButtonClick() {
+        this.props.dispatch(actions.fetchPokemon(this.props.currentIndex+36));
+        this.props.dispatch(actions.changeOffset(this.props.currentIndex+36));
+    }
+    previousButtonClick() {
+        this.props.dispatch(actions.fetchPokemon(this.props.currentIndex-36));
+        this.props.dispatch(actions.changeOffset(this.props.currentIndex-36));
     }
     
     render() {
-        var newCards = this.props.currentCards.map(function(card, index) {
-            return <li key={index}><img src={card.imageUrl} /></li>
-        })
-        var newPokemon = this.props.currentPokemon.map(function(pokemon, index) {
-           return <li key={index}><img src={'../../assets/sprites/pokemon/'+(index+1)+'.png'} />{pokemon.name.toUpperCase()}</li>
-        });
+        var previousButton = (this.props.currentIndex >= 36) ? (<button onClick={this.previousButtonClick.bind(this)}>Previous</button>) : (null); 
+        var nextButton = ((this.props.currentPokemon.length > 35)) ? (<button onClick={this.nextButtonClick.bind(this)}>Next</button>) : (null);
         return(
             <div className='search-card'>
             <form onSubmit={this.formSubmitted.bind(this)}>
             <input type='text' value={this.props.inputValue} onChange={this.inputUpdated.bind(this)} />
             </form>
             <button onClick={this.viewAllClick.bind(this)}>View All</button>
-            {newPokemon}
-            {newCards}
+            {previousButton}{nextButton}
+            <PokemonList />
             </div>
             )
     }
@@ -42,8 +44,10 @@ function mapStateToProps(state, props) {
     return({
         inputValue: state.inputValue,
         currentCards: state.currentCards,
+        previousPage: state.previousPage,
         nextPage: state.nextPage,
-        currentPokemon: state.currentPokemon
+        currentPokemon: state.currentPokemon,
+        currentIndex: state.currentIndex
     })
 }
 

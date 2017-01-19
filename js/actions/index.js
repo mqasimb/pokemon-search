@@ -1,4 +1,5 @@
 var fetch = require('isomorphic-fetch');
+var PokemonList = require('../../assets/poke').pokemonList;
 
 const INPUT_CHANGED = 'INPUT_CHANGED';
 function inputChanged(inputValue) {
@@ -88,9 +89,9 @@ var fetchAllPokemonError = function(error) {
     };
 };
 
-function fetchAllPokemon() {
+function fetchAllPokemon(offset) {
     return function(dispatch) {
-        var url = 'https://pokeapi.co/api/v2/pokemon/?limit=10';
+        var url = 'https://pokeapi.co/api/v2/pokemon/?limit=75&offset='+offset;
         return fetch(url).then(function(response) {
             if(response.status < 200 || response.status >= 300) {
                 var error = new Error(response.statusText);
@@ -103,9 +104,12 @@ function fetchAllPokemon() {
                 return response.json();
             })
             .then(function(data) {
-                    return dispatch(
-                        fetchAllPokemonSuccess(data)
-                )
+                var pokemonlist = data.results;
+                    pokemonlist.forEach(function(pokemon) {
+                        return dispatch(
+                            fetchSinglePokemon(pokemon.url)
+                    )
+                })
             })
             .catch(function(error) {
                 return dispatch(
@@ -157,6 +161,45 @@ function fetchSinglePokemon(url) {
             })
         }
 }
+
+const CHANGE_OFFSET = 'CHANGE_OFFSET';
+function changeOffset(currentOffset) {
+    return {
+        type: CHANGE_OFFSET,
+        currentOffset: currentOffset
+    }
+}
+
+var FETCH_POKEMON_SUCCESS = 'FETCH_POKEMON_SUCCESS';
+var fetchPokemonSuccess = function(data) {
+    return {
+        type: FETCH_POKEMON_SUCCESS,
+        data: data
+    };
+};
+
+var FETCH_POKEMON_ERROR= 'FETCH_POKEMON_ERROR';
+var fetchPokemonError = function(error) {
+    return {
+        type: FETCH_POKEMON_ERROR,
+        error: error
+    };
+};
+
+function fetchPokemon(offset) {
+    return function(dispatch) {
+        return dispatch(fetchPokemonSuccess(PokemonList.slice(offset,offset+36)))
+    }
+}
+
+exports.CHANGE_OFFSET = CHANGE_OFFSET;
+exports.changeOffset = changeOffset;
+
+exports.fetchPokemon = fetchPokemon;
+exports.fetchPokemonSuccess = fetchPokemonSuccess;
+exports.FETCH_POKEMON_SUCCESS = FETCH_POKEMON_SUCCESS;
+exports.fetchPokemonError = fetchPokemonError;
+exports.FETCH_POKEMON_ERROR = FETCH_POKEMON_ERROR;
 
 exports.fetchSinglePokemon = fetchSinglePokemon;
 exports.fetchSinglePokemonSuccess = fetchSinglePokemonSuccess;
