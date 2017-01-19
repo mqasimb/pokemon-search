@@ -20,9 +20,6 @@ class Search extends React.Component {
         this.props.dispatch(actions.fetchSearchName(this.props.inputValue));
         this.props.dispatch(actions.inputSubmit());
     }
-    //viewAllClick() {
-    //    this.props.dispatch(actions.fetchPokemon(this.props.currentIndex));
-    //}
     nextButtonClick() {
         this.props.dispatch(actions.fetchPokemon(this.props.currentIndex+36));
         this.props.dispatch(actions.changeOffset(this.props.currentIndex+36));

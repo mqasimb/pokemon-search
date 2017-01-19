@@ -14,25 +14,21 @@
   display: flex;
   overflow-y: scroll;
 }
-.pokemon {
+.pokemon, .pokemon-card {
     display: inline-block;
 }
-
-.pokemon-card {
-    display: inline-block;
-}
-
 .choose-feature {
     position: fixed;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
-.choose-buttons {
-    text-align: center;
+.choose-feature img {
+    width: 100%;
+    margin-bottom: 10px;
 }
 .home-buttons {
-    margin: 0 20px;
+    margin: 10px 20px;
 }
 .pokeThumbnail {
     height: 180px;
@@ -63,7 +59,7 @@
 h1 {
     color: #FFC706;
 }
-.dsplay-card, .card-list, h1 {
+.dsplay-card, .card-list, h1, .pokemon-list, .favorite-list, .choose-buttons {
     text-align: center;
 }
 .pokemon-card {
@@ -76,5 +72,4 @@ h1 {
 }
 .pokemon-list, .favorite-list {
     margin-top: 40px;
-    text-align: center;
 }
