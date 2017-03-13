@@ -21,3 +21,8 @@ The app is responsive and will scale with different size devices.
 * The API's used are the PokeAPI and PokemonTCGAPI.
 * Fetch used to make API calls.
 * Testing performed using Mocha and Chai.
+
+##Upcoming Features
+* Add Pokemon to your caught list. You can then share your Pokemon team with other users of the app.
+* Adding a Pokemon Card store using the Amazon Product API.
+* Include Pokemon details using the Wikia API.
