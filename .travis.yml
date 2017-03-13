@@ -1,9 +1,17 @@
 language: node_js
 node_js: node
-install:
-  - npm install
-after_success:
-  - test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && bash deploy.sh
-env:
-  global:
-    secure: itq0h7kGyttR64PsHAtXsV1+6fHpUVOU0HJ5sBkP2gmazD1mm0pmvWTRK6Cq06eUkCdtLOeKn5GtQFJGOx89j6qbA12r4qYmFzLX6qtg7qoJcbgoLQ5x9Y+IFhFrFcCbNSc/yiUWLn/j6n0j59bJ4dLr1DgiKuvWrw1sDngzDX3pTcSkiv+LYMeFq2EGyNwAbE2sWPXn0dWwOCx167IQD3RTYyur22RyesXR5XfWOj/3KLFqApD8dVfOwLne42Ck+s64CKpBUShMCqKpLywdTK4IAQUZ9Wnk2vaeDl26md6gHJEJX9NXOOaNromz64vQppUvHlULmQ1x3nCa0iBj+plCA1gUfj+1bFrnO5xnRvPHDnCKkrYOs2tOW/8lzPwPl3piLpEwyApZVt1jYRquy813TrrpsUGp408sfQ20vBQ5G8eFFHLacZUg/fS6Cd7JbTNDHo5ximIUO8oD+Y1FpcXrqqq+aUk1uqUcGTVwZIInbRrxN0prrhKi6rlF8DuwDulvHu9oBkBSD70A6TpEnYFU3bd7K7vuNTpD7eCItUWCkf0FXnCPERLQiqwiql7ZA5D8MEzcb+tZgBdBh0OUGLtvAKXHS3aA5BiTv9MRa2/x6Q9nftTr9wGaZlTtzMj6IONwDDakohsUHMh6wNuuGh8wSzWonM82EjEhef1ucrU=
+services:
+- mongodb
+addons:
+  apt:
+    sources:
+    - mongodb-3.2-precise
+    packages:
+    - mongodb-org-server
+deploy:
+  provider: heroku
+  api_key: 
+    secure: 08d1a138-b01c-455b-9d92-73e0ef738d0f
+  app: pokemonsearchplus
+  on:
+    repo: mqasimb/pokemon-search
