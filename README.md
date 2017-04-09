@@ -1,19 +1,19 @@
-#Pokemon Search Plus
+## Pokemon Search Plus
 [Hosted on Heroku](https://pokemonsearchplus.herokuapp.com)
 React Capstone project - Uses React, Redux and Express.
 
 ![Screenshots](https://raw.githubusercontent.com/mqasimb/pokemon-search/master/assets/ui.jpg)
 
-##Introduction
+## Introduction
 Pokemon Search Plus allows you to view all Pokemon and view the current available trading cards for them.
 You can also add favorite Pokemon so you can know which ones you want to catch when the new Pokemon game comes out.
 
-##Use Case
+## Use Case
 Why is the app useful? There are so many Pokemon now that it is becoming difficult to remember all of them. On top of that, there are also many different card versions for the trading card game. Using Pokemon Search plus can simplify that for you by being the go to data source for Pokemon.
 
 The app is responsive and will scale with different size devices.
 
-##Technical
+## Technical
 * The app is built using React. The frontend is built using HTML, CSS and React. Application state is managed through Redux and the backend uses NodeJS with ExpressJS.
 * The app is fully responsive, adapting for mobile, table and desktop viewports.
 * Routing is handled using React-Router.
@@ -22,7 +22,7 @@ The app is responsive and will scale with different size devices.
 * Fetch used to make API calls.
 * Testing performed using Mocha and Chai.
 
-##Upcoming Features
+## Upcoming Features
 * Add Pokemon to your caught list. You can then share your Pokemon team with other users of the app.
 * Adding a Pokemon Card store using the Amazon Product API.
 * Include Pokemon details using the Wikia API.
