@@ -10,7 +10,7 @@ describe('App Component', function() {
         var renderer = TestUtils.createRenderer();
         renderer.render(<App>Hello World</App>);
         var result = renderer.getRenderOutput();
-        var content = result.props.children;
+        var content = result.props.children[1];
         content.should.equal('Hello World');
     });
 });
