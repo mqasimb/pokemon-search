@@ -16,9 +16,7 @@ class DisplayCards extends React.Component {
     render() {
          return(
             <div className='display-card-page'>
-            <Button bsStyle="success" onClick={browserHistory.goBack}>Go Back</Button>
             <div className='display-card'>
-            {/*{(this.props.linkedPokemon.id) ? (<PokemonDetails/>) : (null)}*/}
             <h1>{this.props.params.pokemonName.toUpperCase()}</h1>
             <CardList />
             </div>

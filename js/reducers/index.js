@@ -13,9 +13,7 @@ var initialState = {
         favoritePokemon: {}
     };
 
-var searchReducer = function(state, action) {
-    state = state || initialState;
-    
+var searchReducer = function(state=initialState, action) {
     var newState = Object.assign({}, state);
     
     if(action.type === actions.FETCH_SINGLE_POKEMON_SUCCESS) {
@@ -36,8 +34,7 @@ var searchReducer = function(state, action) {
     }
     
     if(action.type === actions.FETCH_POKEMON_SUCCESS) {
-        var pokemonData = action.data;
-        newState.currentPokemon = pokemonData.slice();
+        newState.currentPokemon = action.data.slice();
         return newState;
     }
     
@@ -47,18 +44,14 @@ var searchReducer = function(state, action) {
     }
     
     if(action.type === actions.FETCH_SEARCH_SUCCESS) {
-        var filterCards = action.data.cards;
-        newState.currentCards = filterCards.slice();
+        newState.currentCards = action.data.cards.slice();
         return newState;
     }
     
     if(action.type === actions.FETCH_ALL_POKEMON_SUCCESS) {
-        var pokemon = action.data.results;
-        var next = action.data.next;
-        var previous = action.data.previous;
-        newState.currentPokemon = pokemon.slice();
-        newState.nextPage = next;
-        newState.previousPage = previous;
+        newState.currentPokemon = action.data.results.slice();
+        newState.nextPage = action.data.next;
+        newState.previousPage = action.data.previous;
         return newState;
     }
     
@@ -73,13 +66,12 @@ var searchReducer = function(state, action) {
     }
     
     if(action.type === actions.TOGGLE_FAVORITE) {
-        var favoritePokemon = newState.favoritePokemon;
-        if(typeof(favoritePokemon[action.pokemonName]) != 'object') {
-            favoritePokemon[action.pokemonName] = {};
-            favoritePokemon[action.pokemonName].id = action.id;
+        newState.favoritePokemon = Object.assign({}, newState.favoritePokemon);
+        if(typeof(newState.favoritePokemon[action.pokemonName]) != 'object') {
+            newState.favoritePokemon[action.pokemonName] = {};
+            newState.favoritePokemon[action.pokemonName].id = action.id;
         }
-        favoritePokemon[action.pokemonName].favorite = (favoritePokemon[action.pokemonName].favorite) ? (false) : (true);
-        newState.favoritePokemon = Object.assign({}, favoritePokemon);
+        newState.favoritePokemon[action.pokemonName].favorite = (newState.favoritePokemon[action.pokemonName].favorite) ? (false) : (true);
         return newState;
     }
     

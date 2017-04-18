@@ -2,8 +2,8 @@ const React = require('react');
 const { connect } = require('react-redux');
 const actions = require('../actions/index');
 const CardList = require('./card-list');
-const browserHistory = require('react-router').browserHistory;
-var Button = require('react-bootstrap/lib/Button');
+const { browserHistory } = require('react-router');
+const { Button, Col, Row } = require('react-bootstrap');
 
 class SearchCard extends React.Component {
     inputUpdated(event) {
@@ -16,13 +16,34 @@ class SearchCard extends React.Component {
         this.props.dispatch(actions.inputSubmit());
     }
     render() {
+        var formStyle = {
+            width: '100%'
+        }
+        var inputStyle = {
+            width: '50%',
+            maxWidth: '600px',
+            marginBottom: '15px'
+        }
+        var colStyle = {
+            textAlign: 'center'
+        }
+        var buttonStyle = {
+            marginBottom: '15px'    
+        }
         return(
             <div className='search-card'>
-            <Button bsStyle="success" onClick={browserHistory.goBack}>Go Back</Button>
-            <form onSubmit={this.formSubmitted.bind(this)}>
-            <input type='text' value={this.props.inputValue} onChange={this.inputUpdated.bind(this)} />
-            <Button bsStyle="success">Search Cards</Button>
+            <Col style={colStyle} xs={12} sm={12} md={12} lg={12}>
+            <form style={formStyle} onSubmit={this.formSubmitted.bind(this)}>
+            <Row>
+            <Col xs={12} sm={12} md={12} lg={12}>
+            <input style={inputStyle} type='text' value={this.props.inputValue} onChange={this.inputUpdated.bind(this)} />
+            </Col>
+            <Col xs={12} sm={12} md={12} lg={12}>
+            <Button style={buttonStyle} bsStyle="success">Search Cards</Button>
+            </Col>
+            </Row>
             </form>
+            </Col>
             <CardList />
             </div>
             )

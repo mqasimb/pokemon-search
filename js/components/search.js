@@ -30,14 +30,16 @@ class Search extends React.Component {
     }
     
     render() {
-        var previousButton = (this.props.currentIndex >= 36) ? (<Button bsStyle="success" onClick={this.previousButtonClick.bind(this)}>Previous</Button>) : (<Button bsStyle="success" onClick={this.previousButtonClick.bind(this)} disabled>Previous</Button>); 
-        var nextButton = ((this.props.currentPokemon.length > 35)) ? (<Button bsStyle="success" onClick={this.nextButtonClick.bind(this)}>Next</Button>) : (<Button bsStyle="success" onClick={this.nextButtonClick.bind(this)} disabled>Next</Button>);
+        var buttonStyle = {
+            marginLeft: '20px',
+            marginRight: '20px'
+        }
+        var previousButton = (this.props.currentIndex >= 36) ? (<Button style={buttonStyle} bsStyle="success" onClick={this.previousButtonClick.bind(this)}>Previous</Button>) : (<Button bsStyle="success" onClick={this.previousButtonClick.bind(this)} disabled>Previous</Button>); 
+        var nextButton = ((this.props.currentPokemon.length > 35)) ? (<Button style={buttonStyle} bsStyle="success" onClick={this.nextButtonClick.bind(this)}>Next</Button>) : (<Button bsStyle="success" onClick={this.nextButtonClick.bind(this)} disabled>Next</Button>);
         return(
             <div className='search-card'>
             <div className='control-buttons'>
-            <Button bsStyle="success" onClick={browserHistory.goBack}>Go Back</Button>
             {previousButton}{nextButton}
-            <Link to='/favorite-pokemon'><Button bsStyle='success' className='favorite-poke-button'>Favorite Pokemon</Button></Link>
             </div>
             <PokemonList />
             </div>
