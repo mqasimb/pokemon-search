@@ -3,10 +3,8 @@ const { connect } = require('react-redux');
 const actions = require('../actions/index');
 const CardList = require('./card-list');
 const PokemonDetails = require('./pokemon-details');
-const Button = require('react-bootstrap/lib/Button');
-var router = require('react-router');
-const browserHistory = router.browserHistory;
-var Link = router.Link;
+const { Button } = require('react-bootstrap');
+const { Link, browserHistory } = require('react-router');
 
 class DisplayCards extends React.Component {
     componentDidMount() {
@@ -14,24 +12,19 @@ class DisplayCards extends React.Component {
         this.props.dispatch(actions.fetchSearchName(this.props.params.pokemonName))
     }
     render() {
-         return(
+         return (
             <div className='display-card-page'>
-            <div className='display-card'>
-            <h1>{this.props.params.pokemonName.toUpperCase()}</h1>
-            <CardList />
+                <div className='display-card'>
+                    <h1>{this.props.params.pokemonName.toUpperCase()}</h1>
+                    <CardList />
+                </div>
             </div>
-            </div>
-            )
+        )
     }
 }
 
 function mapStateToProps(state, props) {
     return({
-        inputValue: state.inputValue,
-        currentCards: state.currentCards,
-        nextPage: state.nextPage,
-        currentPokemon: state.currentPokemon,
-        linkedPokemon: state.linkedPokemon
     })
 }
 

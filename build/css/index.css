@@ -1,18 +1,17 @@
 * {
   box-sizing: border-box;;
 }
-
 #app {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  background: url("../assets/1.png") no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  display: flex;
-  overflow-y: scroll;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: url("../assets/1.png") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    display: flex;
+    overflow-y: scroll;
 }
 .nav-link {
     color: #FFE130;
@@ -71,36 +70,34 @@ h1 {
     margin: 0 1% 10px;
 }
 .control-buttons {
-  text-align: center;
+    text-align: center;
 }
 .pokemon-list, .favorite-list {
     margin-top: 40px;
 }
 .top-margin {
-  width: 100%;
+    width: 100%;
 }
-
-
 @media only screen and (max-width : 768px){
-        .top-margin {
-            margin-top: 145px;
-        }
+    .top-margin {
+        margin-top: 145px;
+    }
 }
 
 @media only screen and (min-width : 768px){
-        .top-margin {
-            margin-top: 135px;
-        }
+    .top-margin {
+        margin-top: 135px;
+    }
 }
 
 @media only screen and (min-width : 970px){
-        .top-margin {
-            margin-top: 95px;
-        }
+    .top-margin {
+        margin-top: 95px;
+    }
 }
 
 @media only screen and (min-width : 1170px){
-        .top-margin {
-            margin-top: 95px;
-        }
+    .top-margin {
+        margin-top: 95px;
+    }
 }

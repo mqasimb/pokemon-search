@@ -2,11 +2,9 @@ const React = require('react');
 const { connect } = require('react-redux');
 const actions = require('../actions/index');
 const PokemonList = require('./pokemon-list')
-const browserHistory = require('react-router').browserHistory;
-var router = require('react-router');
-var Link = router.Link;
-var Button = require('react-bootstrap/lib/Button');
-
+const { browserHistory } = require('react-router');
+const { Link } = require('react-router');
+const { Button } = require('react-bootstrap');
 
 class Search extends React.Component {
     componentDidMount() {
@@ -28,7 +26,6 @@ class Search extends React.Component {
         this.props.dispatch(actions.fetchPokemon(this.props.currentIndex-36));
         this.props.dispatch(actions.changeOffset(this.props.currentIndex-36));
     }
-    
     render() {
         var buttonStyle = {
             marginLeft: '20px',
@@ -36,23 +33,20 @@ class Search extends React.Component {
         }
         var previousButton = (this.props.currentIndex >= 36) ? (<Button style={buttonStyle} bsStyle="success" onClick={this.previousButtonClick.bind(this)}>Previous</Button>) : (<Button bsStyle="success" onClick={this.previousButtonClick.bind(this)} disabled>Previous</Button>); 
         var nextButton = ((this.props.currentPokemon.length > 35)) ? (<Button style={buttonStyle} bsStyle="success" onClick={this.nextButtonClick.bind(this)}>Next</Button>) : (<Button bsStyle="success" onClick={this.nextButtonClick.bind(this)} disabled>Next</Button>);
-        return(
+        return (
             <div className='search-card'>
-            <div className='control-buttons'>
-            {previousButton}{nextButton}
+                <div className='control-buttons'>
+                    {previousButton}{nextButton}
+                </div>
+                <PokemonList />
             </div>
-            <PokemonList />
-            </div>
-            )
+        )
     }
 }
 
 function mapStateToProps(state, props) {
     return({
         inputValue: state.inputValue,
-        currentCards: state.currentCards,
-        previousPage: state.previousPage,
-        nextPage: state.nextPage,
         currentPokemon: state.currentPokemon,
         currentIndex: state.currentIndex
     })

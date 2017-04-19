@@ -22,24 +22,23 @@ class App extends React.Component {
         }
         return (
             <div className="top-margin">
-            <Navbar style={navBarStyle} fixedTop>
-                <Navbar.Header>
-                  <Navbar.Brand>
-                    <Link to='/'><img style={imageStyle} src="../../assets/titleimage.png"/></Link>
-                  </Navbar.Brand>
-                  <Navbar.Toggle />
-                </Navbar.Header>
-                <Navbar.Form pullLeft>
-                </Navbar.Form>
-                <Navbar.Collapse>
-                    <Nav pullRight>
-					<NavItem onClick={this.visitFavorite.bind(this)} className="nav-text-container"><span className="nav-link">Favorite Pokemon</span></NavItem>
-                    </Nav>
-                </Navbar.Collapse>
-              </Navbar>
-            {this.props.children}
+	            <Navbar style={navBarStyle} fixedTop>
+	                <Navbar.Header>
+	                  	<Navbar.Brand>
+	                    	<Link to='/'><img style={imageStyle} src="../../assets/titleimage.png"/></Link>
+	                  	</Navbar.Brand>
+	                  	<Navbar.Toggle />
+	                </Navbar.Header>
+	                
+	                <Navbar.Collapse>
+	                    <Nav pullRight>
+							<NavItem onClick={this.visitFavorite.bind(this)} className="nav-text-container"><span className="nav-link">Favorite Pokemon</span></NavItem>
+	                    </Nav>
+	                </Navbar.Collapse>
+	            </Navbar>
+	            {this.props.children}
             </div>
-            )
+        )
     }
 }
 

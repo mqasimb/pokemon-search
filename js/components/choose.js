@@ -1,13 +1,12 @@
 const React = require('react');
 const { connect } = require('react-redux');
 const actions = require('../actions/index');
-var router = require('react-router');
-var Link = router.Link;
-var Button = require('react-bootstrap/lib/Button');
+const { Link } = require('react-router');
+const { Button } = require('react-bootstrap');
 
 class Choose extends React.Component {
     render() {
-        return(
+        return (
             <div className='choose-feature'>
                 <img src='../../assets/titleimage.png' />
                 <div className='choose-buttons'>
@@ -15,13 +14,12 @@ class Choose extends React.Component {
                     <Link to='/cards'><Button bsStyle='success' bsSize="large" className='home-buttons'>Search Cards</Button></Link>
                 </div>
             </div>
-            )
+        )
     }
 }
 
 function mapStateToProps(state, props) {
     return({
-        inputValue: state.inputValue,
     })
 }
 

@@ -4,11 +4,11 @@ const actions = require('../actions/index');
 
 class Card extends React.Component {
     render() {
-        return(
+        return (
             <div className='pokemon-card'>
                 <img src={this.props.src} />
             </div>
-            )
+        )
     }
 }
 

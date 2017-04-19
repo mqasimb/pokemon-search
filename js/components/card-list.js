@@ -5,14 +5,14 @@ const Card = require('./card');
 
 class CardList extends React.Component {
     render() {
-        var newCards = this.props.currentCards.map(function(card, index) {
-            return <Card key={index} src={card.imageUrl} />
-        });
-        return(
+        var newCards = this.props.currentCards.map((card, index) =>
+            <Card key={index} src={card.imageUrl} />
+        );
+        return (
             <div className='card-list'>
-            {newCards}
+                {newCards}
             </div>
-            )
+        )
     }
 }
 
