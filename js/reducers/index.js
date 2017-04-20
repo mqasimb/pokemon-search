@@ -44,7 +44,12 @@ var searchReducer = function(state=initialState, action) {
     }
     
     if(action.type === actions.FETCH_SEARCH_SUCCESS) {
-        newState.currentCards = action.data.cards.slice();
+        if(newState.inputValue === '') {
+            newState.currentCards = [].slice();
+        }
+        else {
+            newState.currentCards = action.data.cards.slice();
+        }
         return newState;
     }
     

@@ -8,6 +8,6 @@ const searchReducer = require('./reducers/index');
 
 const logger = createLogger();
 
-const store = createStore(searchReducer, applyMiddleware(thunk, promise));
+const store = createStore(searchReducer, applyMiddleware(thunk, promise, logger));
 
 module.exports = store;
