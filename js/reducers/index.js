@@ -1,5 +1,6 @@
 const react = require('react');
 const actions = require('../actions/index');
+const router = require('react-router');
 
 var initialState = {
         inputValue: '',
@@ -44,12 +45,7 @@ var searchReducer = function(state=initialState, action) {
     }
     
     if(action.type === actions.FETCH_SEARCH_SUCCESS) {
-        if(newState.inputValue === '') {
-            newState.currentCards = [].slice();
-        }
-        else {
-            newState.currentCards = action.data.cards.slice();
-        }
+        newState.currentCards = action.data.cards.slice();
         return newState;
     }
     

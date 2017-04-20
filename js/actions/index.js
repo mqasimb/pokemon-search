@@ -63,6 +63,7 @@ export function fetchSearchName(pokemonName) {
                 return response.json();
             })
             .then(function(data) {
+                console.log(data)
                 return dispatch(
                     fetchSearchSuccess(data)
                 )
