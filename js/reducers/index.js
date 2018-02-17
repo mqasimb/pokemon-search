@@ -1,6 +1,4 @@
-const react = require('react');
 const actions = require('../actions/index');
-const router = require('react-router');
 
 var initialState = {
         inputValue: '',
